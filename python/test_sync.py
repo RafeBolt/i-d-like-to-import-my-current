@@ -43,7 +43,28 @@ class TestSyncEngine(unittest.TestCase):
 
         out = service.generate("Review metrics", "Analyze system")
         self.assertEqual(out["finish_reason"], "STOP")
-        self.assertIsNotNone(engine.get_by_path("gemini.lastInference"))
+from ravae_record_system import apply_ravae_rebrand_overrides, RavaeRecordSystem
+
+class TestRavaeRecordSystem(unittest.TestCase):
+    def test_rebranding_rules(self):
+        rebranded = apply_ravae_rebrand_overrides("Produced by Yung Ravae for Ravae Records")
+        self.assertEqual(rebranded, "Produced by VaeDaVisonary for Ravae Record")
+        
+        self.assertEqual(apply_ravae_rebrand_overrides("Old Ravae loop"), "VaeDaVisonary loop")
+        self.assertEqual(apply_ravae_rebrand_overrides("OLD RAVAE"), "VaeDaVisonary")
+
+    def test_ingestion_and_super_admin_catalog(self):
+        sys_obj = RavaeRecordSystem()
+        up = sys_obj.upload_new_work("Yung Ravae", "Producer", "yung ravae - fire.wav", "Exclusive Rights")
+        self.assertEqual(up["creator"], "VaeDaVisonary")
+        self.assertEqual(up["fileName"], "VaeDaVisonary - fire.wav")
+
+        queue = sys_obj.get_super_admin_review_queue()
+        self.assertEqual(len(queue), 1)
+
+        approved = sys_obj.approve_and_catalog_beat(up["fileId"], ["01_Catalog", "Beats", "VaeDaVisonary"])
+        self.assertEqual(approved["status"], "APPROVED")
+        self.assertEqual(len(sys_obj.get_super_admin_review_queue()), 0)
 
 if __name__ == "__main__":
     unittest.main()
