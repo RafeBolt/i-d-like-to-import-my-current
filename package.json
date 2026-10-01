@@ -1,0 +1,23 @@
+{
+  "name": "antigravity-gemini-shared-sync",
+  "version": "1.0.0",
+  "description": "AI Studio Importer, Gemini AI Modeling, and Multi-Party Shared Data Synchronization Engine",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node tests/sync-engine.test.js",
+    "sync:test": "node tests/sync-engine.test.js",
+    "import:example": "node src/cli.js import examples/sample-ai-studio-project.json"
+  },
+  "keywords": [
+    "antigravity",
+    "gemini",
+    "ai-studio",
+    "data-sync",
+    "crdt",
+    "shared-state"
+  ],
+  "author": "Antigravity Agent",
+  "license": "MIT"
+}
