@@ -4,6 +4,32 @@
 
 // Embedded Sample Projects
 const SAMPLE_PROJECTS = {
+  ravaeRecordOps: {
+    name: "Ravae Record - Ingestion & Super Admin Review System",
+    model: "gemini-2.5-flash",
+    systemInstruction: "You are the Operations & Super Admin Intelligence Agent for Ravae Record. Your mission is to oversee producer beat ingestion, enforce rebranding policies (converting legacy aliases like 'Yung Ravae' and 'Old Ravae' into 'VaeDaVisonary', and updating 'Ravae Records' to 'Ravae Record'), audit rights tiers (Exclusive, Non-Exclusive, Royalty Splits, Work-for-Hire), and direct approved works into the Google Drive catalog hierarchy under RAVAE-STUDIO-ROOT.",
+    generationConfig: {
+      temperature: 0.2,
+      topP: 0.85,
+      topK: 30,
+      maxOutputTokens: 4096,
+      responseMimeType: "text/plain"
+    },
+    tools: [
+      {
+        name: "uploadNewWork",
+        description: "Uploads creator work into staging folder with rebrand normalization"
+      },
+      {
+        name: "getSuperAdminReviewQueue",
+        description: "Fetches all files currently awaiting approval in staging"
+      },
+      {
+        name: "approveAndCatalogBeat",
+        description: "Approves staged beat and moves it to the target Google Drive catalog path"
+      }
+    ]
+  },
   syncAgent: {
     name: "Intelligent Data Sync & Reasoning Agent",
     model: "gemini-2.5-flash",
