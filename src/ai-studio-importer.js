@@ -35,9 +35,26 @@ export class AIStudioImporter {
         }
       }
 
-      // Check if Python / JS code
-      if (!parsed) {
-        if (trimmed.includes("google.generativeai") || trimmed.includes("from google import genai") || trimmed.includes("GoogleGenAI")) {
+        if (trimmed.includes("Ravae Record") || (trimmed.includes("DriveApp") && trimmed.includes("ROOT_FOLDER_ID"))) {
+          parsed = {
+            name: "Ravae Record - Ingestion & Super Admin Review System",
+            model: "gemini-2.5-flash",
+            systemInstruction: "You are the Operations & Super Admin Intelligence Agent for Ravae Record. Your mission is to oversee producer beat ingestion, enforce rebranding policies (converting legacy aliases like 'Yung Ravae' and 'Old Ravae' into 'VaeDaVisonary', and updating 'Ravae Records' to 'Ravae Record'), audit rights tiers, and direct approved works into the Google Drive catalog hierarchy under RAVAE-STUDIO-ROOT.",
+            generationConfig: {
+              temperature: 0.2,
+              topP: 0.85,
+              topK: 30,
+              maxOutputTokens: 4096
+            },
+            tools: [
+              { name: "uploadNewWork", description: "Uploads creator work into staging folder with rebrand normalization" },
+              { name: "getSuperAdminReviewQueue", description: "Fetches all files currently awaiting approval in staging" },
+              { name: "approveAndCatalogBeat", description: "Approves staged beat and moves it to the target Google Drive catalog path" }
+            ],
+            rawScript: trimmed
+          };
+          format = "google-apps-script";
+        } else if (trimmed.includes("google.generativeai") || trimmed.includes("from google import genai") || trimmed.includes("GoogleGenAI")) {
           parsed = this.extractFromCode(trimmed);
           format = "code";
         } else if (trimmed.includes("curl ") || trimmed.includes("generativelanguage.googleapis.com")) {
