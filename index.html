@@ -32,7 +32,10 @@
 
     <!-- Navigation Tabs -->
     <nav class="nav-tabs">
-      <button class="tab-btn active" data-tab="tab-importer">
+      <button class="tab-btn active" data-tab="tab-ravae">
+        <span>🎵</span> Ravae Record Studio
+      </button>
+      <button class="tab-btn" data-tab="tab-importer">
         <span>📥</span> AI Studio Importer
       </button>
       <button class="tab-btn" data-tab="tab-sync">
@@ -50,8 +53,149 @@
   <!-- Main Viewports -->
   <main>
 
+    <!-- Tab 0: Ravae Record Studio Hub -->
+    <section id="tab-ravae" class="tab-content active">
+      <!-- Banner -->
+      <div class="ravae-banner">
+        <div class="ravae-brand-title">
+          <div class="ravae-disc-icon">💿</div>
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.15rem;">
+              Ravae Record &bull; Ingestion & Super Admin Review System
+            </h2>
+            <p style="font-size: 0.8rem; color: #cbd5e1;">
+              The Backstage Operations Hub &bull; Google Drive Integration (<code style="color: #38bdf8;">RAVAE-STUDIO-ROOT</code>) &bull; Tri-Party Sync
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <div class="rebrand-pill">
+            <span>Ravae Records</span>
+            <span class="arrow">&rarr;</span>
+            <span class="target">Ravae Record</span>
+          </div>
+          <div class="rebrand-pill">
+            <span>Yung / Old Ravae</span>
+            <span class="arrow">&rarr;</span>
+            <span class="target">VaeDaVisonary</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Rebranding Tester Bar -->
+      <div class="glass-panel" style="margin-bottom: 1.5rem;">
+        <div class="panel-header">
+          <h2><span>✨</span> Live Rebrand Override Rule Inspector (<code>applyRavaeRebrandOverrides</code>)</h2>
+          <span style="font-size: 0.75rem; color: #94a3b8;">Real-time text & metadata normalization</span>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 280px;">
+            <input type="text" id="rebrand-input" value="Produced by Yung Ravae for Ravae Records - Summer Trap Beat" placeholder="Type artist name, beat title, or metadata...">
+          </div>
+          <div style="font-size: 1.2rem; color: #38bdf8;">&rarr;</div>
+          <div style="flex: 1; min-width: 280px; background: #090d16; padding: 0.65rem 0.85rem; border: 1px solid var(--card-border); border-radius: var(--radius-sm); color: #34d399; font-weight: 600; font-family: var(--font-mono); font-size: 0.85rem;" id="rebrand-output">
+            Produced by VaeDaVisonary for Ravae Record - Summer Trap Beat
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Column 1: Producer & Creator Ingestion Endpoint -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2><span>📤</span> 1. Ingestion Endpoint (<code>uploadNewWork</code>)</h2>
+            <span class="badge badge-purple">00_Uploads_Pending_Review</span>
+          </div>
+
+          <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 1rem;">
+            Producers and creators upload works here. Rebranding overrides are automatically applied before file creation and placed into the appropriate staging folder.
+          </p>
+
+          <div class="form-group">
+            <label>Quick Presets for Fast Testing:</label>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="btn btn-secondary btn-sm" id="preset-prod-yung">
+                🎵 Yung Ravae (Producer)
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" id="preset-prod-old">
+                🎹 Old Ravae (Producer)
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" id="preset-creator-vid">
+                📹 Content Creator Promo
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ravae-creator">Creator / Artist Name:</label>
+            <input type="text" id="ravae-creator" value="Yung Ravae" placeholder="e.g. Yung Ravae">
+          </div>
+
+          <div class="form-group">
+            <label for="ravae-role">Role:</label>
+            <select id="ravae-role">
+              <option value="Producer">Producer (Routes to 00_Uploads_Pending_Review/Producers)</option>
+              <option value="Beatmaker">Beatmaker (Routes to 00_Uploads_Pending_Review/Producers)</option>
+              <option value="Content_Creator">Content Creator (Routes to 00_Uploads_Pending_Review/Content_Creators)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ravae-filename">Track / File Name:</label>
+            <input type="text" id="ravae-filename" value="yung ravae - Midnight Heat Wave.wav" placeholder="e.g. Beat Title.wav">
+          </div>
+
+          <div class="form-group">
+            <label for="ravae-tier">Rights Tier:</label>
+            <select id="ravae-tier">
+              <option value="Exclusive Rights">Exclusive Rights (100% Master / Publishing Assignment)</option>
+              <option value="Non-Exclusive Lease">Non-Exclusive Lease (Standard Streaming License)</option>
+              <option value="Royalty Split (50/50)">Royalty Split (50/50 Master & Performance)</option>
+              <option value="Work-for-Hire">Work-for-Hire (Direct Buyout)</option>
+            </select>
+          </div>
+
+          <button id="btn-upload-work" class="btn btn-primary" style="width: 100%;">
+            <span>🚀</span> Upload New Work to Staging Queue
+          </button>
+
+          <div id="upload-feedback" style="margin-top: 1rem;"></div>
+        </div>
+
+        <!-- Column 2: Super Admin Review Queue & Approval -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2><span>👑</span> 2. Super Admin Review Queue (<code>getSuperAdminReviewQueue</code>)</h2>
+            <span class="badge badge-gold" id="pending-count-badge">0 Pending</span>
+          </div>
+
+          <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem;">
+            Super Admins inspect pending submissions, audit rights, and approve beats into the official Google Drive catalog.
+          </p>
+
+          <div id="admin-queue-list">
+            <!-- Queue items rendered dynamically -->
+          </div>
+
+          <!-- File System Tree -->
+          <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--card-border);">
+            <div class="panel-header" style="margin-bottom: 0.5rem; padding-bottom: 0.4rem;">
+              <h3 style="font-size: 0.95rem; font-weight: 600; color: #38bdf8; display: flex; align-items: center; gap: 0.4rem;">
+                <span>📁</span> Google Drive: RAVAE STUDIO (FILE SYSTEM)
+              </h3>
+              <button id="btn-refresh-tree" class="btn btn-secondary btn-sm">↺ Refresh Tree</button>
+            </div>
+            <div class="file-tree" id="drive-file-tree">
+              <!-- Rendered via app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Tab 1: AI Studio Importer -->
-    <section id="tab-importer" class="tab-content active">
+    <section id="tab-importer" class="tab-content">
       <div class="grid-2">
         <!-- Input Column -->
         <div class="glass-panel">
@@ -63,6 +207,7 @@
           <div class="form-group">
             <label for="preset-select">Or load AI Studio Archetype Template:</label>
             <select id="preset-select">
+              <option value="ravaeRecordOps" selected>Preset: Ravae Record - Ingestion & Super Admin Review System</option>
               <option value="syncAgent">Preset: Intelligent Data Sync & Reasoning Agent</option>
               <option value="taskCoordinator">Preset: Multi-Party Task Coordinator</option>
               <option value="structuredExtractor">Preset: Shared Schema & Entity Extractor</option>
