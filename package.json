@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "test": "node tests/sync-engine.test.js",
+    "test": "node tests/sync-engine.test.js && node tests/ravae-system.test.js",
     "sync:test": "node tests/sync-engine.test.js",
+    "ravae:test": "node tests/ravae-system.test.js",
     "import:example": "node src/cli.js import examples/sample-ai-studio-project.json"
   },
   "keywords": [
