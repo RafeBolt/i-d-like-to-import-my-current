@@ -40,6 +40,18 @@
       "created_at": "2026-10-01T21:42:32.231Z",
       "sender": "ios",
       "is_cancelled": false
+    },
+    {
+      "id": "be43d696-7c7a-4cd8-a8b0-8794ae2b86f5",
+      "role": "agent",
+      "content": "**Not yet!** Because Google AI Studio is private to your personal Google account, Antigravity cannot access your account to pull the project automatically.\n\nTo import your specific project code, you can use any of these 3 quick methods:\n\n1. **Paste it directly here in the chat (Easiest)**:\n   - In Google AI Studio, click **\"Get Code\"** (or copy your prompt / system instruction / JSON).\n   - Paste it right into a message here. I will immediately parse it, configure the system coding, and wire it directly into the Shared Data synchronization engine.\n\n2. **Connect via GitHub**:\n   - If your AI Studio project is in a GitHub repo, tap the **GitHub mark at the top of the chat** to connect your repository.\n\n3. **Paste in the Live Preview**:\n   - Open the **[Live Preview](https://antigravity.luch.dev/site/5a04663d-581c-4f3c-a29b-f225c7fa439b/5bdbbdb254eebd02190527f3/)**.\n   - Go to the **📥 AI Studio Importer** tab, paste your code/JSON, and click **Import & Sync to Workspace**.\n\nThe backend architecture, multi-party synchronization engine ([`src/sync-engine.js`](file:///home/agent/workspace/src/sync-engine.js)), and Gemini AI service ([`src/gemini-service.js`](file:///home/agent/workspace/src/gemini-service.js)) are ready and waiting to receive your project!",
+      "status": "completed",
+      "model": "gemini-3.8-flash-high",
+      "client_type": "gemini-bridge",
+      "parent_message_id": "601530cc-985d-4e31-b9e0-3bcdab93e37c",
+      "created_at": "2026-10-01T21:42:52.922Z",
+      "sender": "macOS",
+      "is_cancelled": false
     }
   ]
 }
