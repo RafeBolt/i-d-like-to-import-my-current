@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity - AI Studio & Shared Data Sync Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>Antigravity Intelligence Hub</h1>
+          <p>AI Studio Importer &bull; Gemini AI Modeling &bull; Multi-Party Shared Data Sync</p>
+        </div>
+      </div>
+
+      <div class="status-badge-group">
+        <div class="status-pill">
+          <span class="pulse-dot"></span>
+          <span>Shared State Synced</span>
+        </div>
+        <div style="font-size: 0.75rem; color: #94a3b8; font-family: monospace;">
+          Sequence: <span id="seq-counter" style="color: #38bdf8; font-weight: bold;">#1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-importer">
+        <span>📥</span> AI Studio Importer
+      </button>
+      <button class="tab-btn" data-tab="tab-sync">
+        <span>🔄</span> Shared Data Synchronization Hub
+      </button>
+      <button class="tab-btn" data-tab="tab-modeling">
+        <span>🧠</span> Gemini AI Modeling Studio
+      </button>
+      <button class="tab-btn" data-tab="tab-diagnostics">
+        <span>🧪</span> System Diagnostics & Self-Healing
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Viewports -->
+  <main>
+
+    <!-- Tab 1: AI Studio Importer -->
+    <section id="tab-importer" class="tab-content active">
+      <div class="grid-2">
+        <!-- Input Column -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2><span>📥</span> Import AI Studio Project</h2>
+            <div style="font-size: 0.75rem; color: #94a3b8;">JSON / Code / Prompt</div>
+          </div>
+
+          <div class="form-group">
+            <label for="preset-select">Or load AI Studio Archetype Template:</label>
+            <select id="preset-select">
+              <option value="syncAgent">Preset: Intelligent Data Sync & Reasoning Agent</option>
+              <option value="taskCoordinator">Preset: Multi-Party Task Coordinator</option>
+              <option value="structuredExtractor">Preset: Shared Schema & Entity Extractor</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="importer-input">Paste Google AI Studio Export (JSON or Code):</label>
+            <textarea id="importer-input" class="code-font" rows="14" placeholder="Paste your AI Studio prompt JSON, Python export, or System Instruction here..."></textarea>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+            <button id="btn-import-project" class="btn btn-primary">
+              <span>⚡</span> Import & Sync to Workspace
+            </button>
+            <span style="font-size: 0.75rem; color: #94a3b8;">
+              Tip: In AI Studio, click <strong>"Get Code"</strong> or copy the prompt configuration.
+            </span>
+          </div>
+
+          <div id="project-summary" style="margin-top: 1.25rem;"></div>
+        </div>
+
+        <!-- Output SDK Code Column -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2><span>💻</span> Synchronized SDK Code</h2>
+            <span class="badge badge-purple">Ready to Run</span>
+          </div>
+
+          <div class="form-group">
+            <label>Node.js Google GenAI SDK:</label>
+            <pre class="code-block" id="code-export-node">// Generating Node.js code...</pre>
+          </div>
+
+          <div class="form-group">
+            <label>Python Google GenAI SDK:</label>
+            <pre class="code-block" id="code-export-python">// Generating Python code...</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Shared Data Synchronization Hub -->
+    <section id="tab-sync" class="tab-content">
+      <!-- Visual Topology -->
+      <div class="topology-container">
+        <div class="topology-node workspace">
+          <div class="node-icon">💻</div>
+          <div class="node-title" style="color: #38bdf8;">Workspace</div>
+          <div class="node-detail" id="top-ws-detail">Local files & state store</div>
+        </div>
+
+        <div class="sync-line">
+          <div class="sync-dot"></div>
+        </div>
+
+        <div class="topology-node gemini">
+          <div class="node-icon">🧠</div>
+          <div class="node-title" style="color: #c084fc;">Gemini AI Core</div>
+          <div class="node-detail" id="top-gemini-detail">Dynamic reasoning & context</div>
+        </div>
+
+        <div class="sync-line">
+          <div class="sync-dot" style="animation-delay: 1.5s;"></div>
+        </div>
+
+        <div class="topology-node parties">
+          <div class="node-icon">📱</div>
+          <div class="node-title" style="color: #34d399;">Other Parties</div>
+          <div class="node-detail" id="top-parties-detail">iOS Mobile App & Collaborators</div>
+        </div>
+      </div>
+
+      <!-- Action Simulation Bar -->
+      <div class="glass-panel" style="margin-bottom: 1.5rem;">
+        <div class="panel-header">
+          <h2><span>🕹️</span> Multi-Party Sync Simulation & Conflict Testing</h2>
+          <span style="font-size: 0.8rem; color: #94a3b8;">Trigger real-time state mutations across parties</span>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button id="btn-act-workspace" class="btn btn-secondary">
+            <span>💻</span> Workspace: Mutate Shared Dataset
+          </button>
+          <button id="btn-act-gemini" class="btn btn-secondary">
+            <span>🧠</span> Gemini: Commit Inference State
+          </button>
+          <button id="btn-act-client" class="btn btn-secondary">
+            <span>📱</span> iOS App: Push Remote Action
+          </button>
+          <button id="btn-act-conflict" class="btn btn-accent">
+            <span>⚡</span> Test Concurrency & Conflict Healing (LWW)
+          </button>
+        </div>
+      </div>
+
+      <!-- State Tree & Live Stream Grid -->
+      <div class="grid-2">
+        <!-- Live State Explorer -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2><span>📦</span> Unified Shared State Tree</h2>
+            <div style="font-size: 0.75rem; font-family: monospace; color: #94a3b8;">
+              Clocks: <span id="clock-counter" style="color: #38bdf8;"></span>
+            </div>
+          </div>
+          <pre class="code-block" id="state-json-view" style="max-height: 420px;"></pre>
+        </div>
+
+        <!-- Live Sync Event Stream -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2><span>📡</span> Real-Time Sync Event Stream</h2>
+            <span class="badge badge-cyan">Listening</span>
+          </div>
+          <div class="event-list" id="sync-event-list">
+            <!-- Event stream items rendered via app.js -->
+          </div>
+
+          <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--card-border);">
+            <div style="font-size: 0.8rem; font-weight: 600; color: #94a3b8; margin-bottom: 0.4rem;">Conflict Resolution Log:</div>
+            <div id="conflict-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Gemini AI Modeling Studio -->
+    <section id="tab-modeling" class="tab-content">
+      <div class="grid-2">
+        <!-- AI Settings & System Prompt -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2><span>🧠</span> AI Model Configuration</h2>
+            <span class="badge badge-purple">Gemini SDK Ready</span>
+          </div>
+
+          <div class="form-group">
+            <label for="model-select">Target Model:</label>
+            <select id="model-select">
+              <option value="gemini-2.5-flash">Gemini 2.5 Flash (Fastest, High Quality Reasoning)</option>
+              <option value="gemini-1.5-pro">Gemini 1.5 Pro (Deep Reasoning & Large Context)</option>
+              <option value="gemini-1.5-flash">Gemini 1.5 Flash (Lightweight & Efficient)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+              <label style="margin-bottom: 0;">Temperature: <span id="temp-value" style="color: #38bdf8;">0.4</span></label>
+            </div>
+            <input type="range" id="temp-slider" min="0" max="2" step="0.1" value="0.4" style="width: 100%;">
+          </div>
+
+          <div class="form-group">
+            <label for="sys-prompt-input">System Instruction (Auto-Imported from AI Studio):</label>
+            <textarea id="sys-prompt-input" rows="6" class="code-font" placeholder="System instructions..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Dynamically Injected Shared Context (Live Memory):</label>
+            <pre class="code-block" id="gemini-dyn-context" style="max-height: 180px;"></pre>
+          </div>
+        </div>
+
+        <!-- AI Playground -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <h2><span>💬</span> AI Modeling Execution Playground</h2>
+            <span class="badge badge-emerald">Interactive</span>
+          </div>
+
+          <div class="form-group">
+            <label for="ai-prompt-input">Prompt Input:</label>
+            <textarea id="ai-prompt-input" rows="5" placeholder="Enter prompt to execute with synchronized shared workspace state...">Analyze synchronization status between workspace and iOS client.</textarea>
+          </div>
+
+          <button id="btn-run-model" class="btn btn-primary" style="margin-bottom: 1rem;">
+            <span>▶</span> Run Gemini Inference
+          </button>
+
+          <div class="form-group">
+            <label>Model Inference Output:</label>
+            <div id="ai-output-text" style="padding: 1rem; background: #090d16; border: 1px solid var(--card-border); border-radius: 8px; font-size: 0.9rem; min-height: 180px; white-space: pre-wrap; color: #f1f5f9;">
+Ready for prompt execution. The model automatically ingests current shared workspace context and updates the shared state store upon completion.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: System Diagnostics -->
+    <section id="tab-diagnostics" class="tab-content">
+      <div class="glass-panel">
+        <div class="panel-header">
+          <h2><span>🧪</span> System Health, Tests & Self-Healing</h2>
+          <button id="btn-run-diag" class="btn btn-primary btn-sm">
+            <span>↺</span> Re-run Diagnostics
+          </button>
+        </div>
+
+        <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem;">
+          Continuous integration checks for AI Studio project importing, multi-party synchronization, vector clock alignment, and conflict resolution.
+        </p>
+
+        <div class="test-suite" id="diag-results">
+          <!-- Diagnostics rendered by app.js -->
+        </div>
+
+        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px;">
+          <h4 style="color: #38bdf8; margin-bottom: 0.25rem; font-size: 0.9rem;">Connecting to GitHub</h4>
+          <p style="font-size: 0.8rem; color: #cbd5e1;">
+            To connect your GitHub repository, tap the <strong>GitHub mark at the top of the chat</strong>. Your full commit history and workspace code will be synchronized to GitHub automatically.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Antigravity Intelligence Platform &bull; Real-Time Multi-Party Shared Data Synchronization &bull; Google GenAI Integration
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
