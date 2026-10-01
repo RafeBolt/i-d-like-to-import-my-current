@@ -35,6 +35,8 @@ export class AIStudioImporter {
         }
       }
 
+      // Check if code, apps script, or prompt text
+      if (!parsed) {
         if (trimmed.includes("Ravae Record") || (trimmed.includes("DriveApp") && trimmed.includes("ROOT_FOLDER_ID"))) {
           parsed = {
             name: "Ravae Record - Ingestion & Super Admin Review System",

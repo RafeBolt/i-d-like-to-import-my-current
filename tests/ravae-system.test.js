@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { 
   applyRavaeRebrandOverrides, 
   RavaeRecordSystem, 
@@ -6,6 +7,7 @@ import {
   ROOT_FOLDER_ID 
 } from '../src/ravae-record-system.js';
 import { SyncEngine } from '../src/sync-engine.js';
+import { AIStudioImporter } from '../src/ai-studio-importer.js';
 
 console.log("=== RUNNING RAVAE RECORD SYSTEM TESTS ===");
 
@@ -85,11 +87,20 @@ assert.equal(queueAfterApproval.length, 1);
 assert.equal(queueAfterApproval[0].fileId, upload2.fileId);
 console.log("  PASS: Approval and catalog move verified");
 
+// 5. Shared Sync Engine Integration
+console.log("Testing Shared Sync Engine integration...");
+const syncEngine = new SyncEngine();
+const syncedSystem = new RavaeRecordSystem({ syncEngine });
+syncedSystem.uploadNewWork("Old Ravae", "Beatmaker", "Soul Jam.mp3", "Royalty Split");
+
+const syncedQueue = syncEngine.getByPath("ravae.reviewQueue");
+assert.ok(syncedQueue);
+assert.equal(syncedQueue.length, 1);
+assert.equal(syncedQueue[0].creator, "VaeDaVisonary");
+console.log("  PASS: Shared Sync Engine state replication verified");
+
 // 6. AI Studio Importer Integration Test
 console.log("Testing AIStudioImporter parsing of Google Apps Script code...");
-import { AIStudioImporter } from '../src/ai-studio-importer.js';
-import fs from 'node:fs';
-
 const gasScript = fs.readFileSync('google-apps-script/ravae-record-system.js', 'utf-8');
 const importedProject = AIStudioImporter.parse(gasScript);
 
@@ -100,4 +111,3 @@ assert.equal(importedProject.tools.length, 3);
 console.log("  PASS: AIStudioImporter successfully parsed Google Apps Script");
 
 console.log("=== ALL RAVAE SYSTEM TESTS PASSED ===");
-
