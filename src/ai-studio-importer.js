@@ -76,7 +76,7 @@ export class AIStudioImporter {
     };
 
     // Extract model name
-    const modelMatch = code.match(/model\s*=\s*['"]([^'"]+)['"]/i) || code.match(/models\/([^'"]+)/i);
+    const modelMatch = code.match(/model(?:_name)?\s*=\s*['"]([^'"]+)['"]/i) || code.match(/models\/([^'"]+)/i);
     if (modelMatch) {
       result.model = modelMatch[1];
     }

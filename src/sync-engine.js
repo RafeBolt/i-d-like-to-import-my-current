@@ -105,7 +105,7 @@ export class SyncEngine extends EventEmitter {
       path,
       value: resolvedValue,
       previousValue,
-      hadConflict,
+      hadConflict: hasConflict,
       timestamp: now,
       isoTime: new Date(now).toISOString(),
       vectorClocks: { ...this.vectorClocks },
@@ -146,7 +146,7 @@ export class SyncEngine extends EventEmitter {
    * Detect potential concurrency conflicts
    */
   detectConflict(party, path, meta) {
-    if (!meta.expectedVersion && !meta.clientTimestamp) {
+    if (meta.expectedVersion === undefined && meta.clientTimestamp === undefined) {
       return false;
     }
 
